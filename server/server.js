@@ -21,7 +21,8 @@ const io = socket(server, {
 io.on("connection", socket => {
     console.log(`socket id: ${socket.id}`)
 
-    socket.on("event_from_child", data => {
-        socket.broadcast.emit("event_to_all_other_clients", data)
+    socket.on("send_message", (data) => {
+        console.log(data)
+        socket.broadcast.emit("receive_message", data)
     })
 })
